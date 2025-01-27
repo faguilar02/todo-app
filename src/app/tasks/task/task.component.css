@@ -1,0 +1,6 @@
+.buttons {
+  display: none;
+}
+.parent:hover .buttons {
+  display: block;
+}

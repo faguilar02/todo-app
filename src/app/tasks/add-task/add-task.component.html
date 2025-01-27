@@ -1,0 +1,15 @@
+<form class="flex h-7 mb-2 gap-2" [formGroup]="myForm" (ngSubmit)="addTask()">
+  <input
+    type="text"
+    placeholder="Add new task ..."
+    class="bg-zinc-900 rounded-md px-2 w-56 placeholder:text-xs placeholder:text-zinc-500 placeholder:text-[11px] caret-white text-xs text-white"
+    formControlName="text"
+  />
+
+  <button
+    class="rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white w-8 font-bold text-lg"
+    type="submit"
+  >
+    +
+  </button>
+</form>
