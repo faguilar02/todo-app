@@ -37,4 +37,5 @@ export class TaskListComponent {
 
     this.tasksService.searchByState(state);
   }
+
 }

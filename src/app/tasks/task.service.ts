@@ -17,9 +17,11 @@ export class TasksService {
   }
 
   addTask(task: Task) {
+    console.log(task);
     this._tasks.update((tasks) => [...tasks, { ...task }]);
     this.saveToLocalStorage();
     this.clearFilter();
+    console.log(this._tasks());
   }
 
   changeIsCompleted(id: number) {
@@ -28,10 +30,25 @@ export class TasksService {
     );
 
     this.saveToLocalStorage();
-    this.clearFilter();
+
+    const filteredTasks = this._tasks().filter((task) => {
+      switch (this._state()) {
+        case 'Pending':
+          return task.completed === false;
+
+        case 'Completed':
+          return task.completed === true;
+
+        default:
+          return task;
+      }
+    });
+
+    this._filteredTasks.set(filteredTasks);
   }
 
   searchTaskByText(text: string) {
+    console.log(this._state());
     const formatedText = text.toLowerCase().trim();
     const filteredTasks = this._tasks().filter((task) => {
       switch (this._state()) {
@@ -47,6 +64,17 @@ export class TasksService {
     });
 
     this._filteredTasks.set(filteredTasks);
+  }
+
+  editValueTask(task: Task, text: string) {
+
+    this._tasks.update((tasks) =>
+      tasks.map((t) => (t.id === task.id ? { ...t, text: text } : t))
+    );
+
+    console.log(this._tasks());
+
+    this.saveToLocalStorage();
   }
 
   searchByState(state: State) {
@@ -80,5 +108,13 @@ export class TasksService {
 
   saveToLocalStorage() {
     localStorage.setItem('tasks', JSON.stringify(this._tasks()));
+  }
+
+  deleteTask(id: number) {
+    const tasks = this._tasks().filter((task) => task.id !== id);
+
+    this._tasks.set(tasks);
+
+    this.saveToLocalStorage();
   }
 }

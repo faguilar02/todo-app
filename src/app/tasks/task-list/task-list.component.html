@@ -2,15 +2,15 @@
   class="flex flex-col outline bg-zinc-950 py-4 px-3 outline-zinc-800 w-72 h-auto rounded-md"
 >
   <div class="flex justify-between mb-5">
-    <h1 class="text-white font-bold">FERtasks</h1>
-    <h1 class="text-white text-[10px] font-semibold">  {{counter()}}</h1>
+    <h1 class="text-white font-bold text-md">My Tasks</h1>
+    <h1 class="text-white text-[10px] font-semibold">{{ counter() }}</h1>
   </div>
 
   <app-add-task />
 
   <app-search />
 
-  <div class="flex bg-zinc-900 rounded-md p-[2px]">
+  <div class="flex bg-zinc-900 rounded-md p-[2px] border-[1.5px] border-zinc-700">
     @for (state of states; track $index) {
     <button
       class="flex-1 text-center text-[10px] font-semibold text-zinc-500 h-7 border-zinc-800"
@@ -20,6 +20,7 @@
       {{ state }}
     </button>
     }
+
   </div>
   <div class="flex flex-col gap-[5px] mt-2">
     @for (task of tasks(); track $index) {
