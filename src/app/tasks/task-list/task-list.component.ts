@@ -11,11 +11,13 @@ import { SearchComponent } from '../../shared/search/search.component';
 import { AddTaskComponent } from '../add-task/add-task.component';
 import { TaskComponent } from '../task/task.component';
 import { TasksService } from '../task.service';
+import { DeleteModalComponent } from "../../shared/delete-modal/delete-modal.component";
+import { Task } from '../interfaces/task.interface';
 
 @Component({
   selector: 'app-task-list',
   standalone: true,
-  imports: [CommonModule, SearchComponent, AddTaskComponent, TaskComponent],
+  imports: [CommonModule, SearchComponent, AddTaskComponent, TaskComponent, DeleteModalComponent],
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -32,10 +34,25 @@ export class TaskListComponent {
     () => `${this.completedTasks()} / ${this.numberOfTasks()}`
   );
 
+  public isDeleting = computed( () => this.tasksService.isDeleting())
+  public taskToDelete = signal<Task>({
+    id: 0,
+    text: '',
+    completed: false
+
+  })
+
   searchByState(state: State) {
     this.selectedState = state;
-
     this.tasksService.searchByState(state);
+  }
+
+  isDeletingTask(value: boolean) {
+    this.tasksService.isDeleting.set(value)
+  }
+
+  setTask(task:Task){
+    this.taskToDelete.set(task)
   }
 
 }

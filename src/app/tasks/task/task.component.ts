@@ -5,6 +5,7 @@ import {
   ElementRef,
   inject,
   input,
+  output,
   signal,
   ViewChild,
 } from '@angular/core';
@@ -21,9 +22,12 @@ import { CustomFocusDirective } from '../../shared/directives/custom-focus.direc
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskComponent {
+
+  public isDeleting = output<boolean>()
   public task = input.required<Task>();
   private tasksService = inject(TasksService);
   public isEditing = signal<boolean>(false);
+  public taskToDelete = output<Task>()
 
   changeToCompleted(id: number) {
     this.tasksService.changeIsCompleted(id);
@@ -31,7 +35,7 @@ export class TaskComponent {
 
   editTask(task: Task) {
     this.isEditing.set(true);
-    console.log(task);
+    // console.log(task);
   }
 
   changeValueOfEditingByBlur() {
@@ -41,13 +45,20 @@ export class TaskComponent {
     }, 150);
   }
 
+  emitDeletingValue(task:Task){
+    this.isDeleting.emit(true)
+    this.taskToDelete.emit(task)
+
+
+  }
+
   deleteTask(id: number) {
     this.tasksService.deleteTask(id);
   }
 
   editValueTask(task: Task, text: string ) {
-    console.log('editandoo')
-    console.log({task:task, text:text})
+    // console.log('editandoo')
+    // console.log({task:task, text:text})
     this.tasksService.editValueTask(task, text);
   }
 }

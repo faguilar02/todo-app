@@ -28,7 +28,7 @@
         class="pi pi-pencil text-[10px] text-white group-hover:text-emerald-500"
       ></i>
     </button>
-    <button class="mx-2 hover:bg-zinc-700 w-5 h-[23px] rounded-md group" (click)="deleteTask(task().id)">
+    <button class="mx-2 hover:bg-zinc-700 w-5 h-[23px] rounded-md group" (click)="emitDeletingValue(task())">
       <i
         class="pi pi-trash text-[10px] text-white group-hover:text-red-500"
       ></i>

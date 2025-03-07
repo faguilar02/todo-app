@@ -1,3 +1,10 @@
+@if (isDeleting()) {
+<div
+  class="fixed inset-0 bg-black bg-opacity-60 z-40 flex items-center justify-center"
+>
+  <app-delete-modal [task]="taskToDelete()"></app-delete-modal>
+</div>
+}
 <div
   class="flex flex-col outline bg-zinc-950 py-4 px-3 outline-zinc-800 w-72 h-auto rounded-md"
 >
@@ -10,7 +17,9 @@
 
   <app-search />
 
-  <div class="flex bg-zinc-900 rounded-md p-[2px] border-[1.5px] border-zinc-700">
+  <div
+    class="flex bg-zinc-900 rounded-md p-[2px] border-[1.5px] border-zinc-700"
+  >
     @for (state of states; track $index) {
     <button
       class="flex-1 text-center text-[10px] font-semibold text-zinc-500 h-7 border-zinc-800"
@@ -20,12 +29,11 @@
       {{ state }}
     </button>
     }
-
   </div>
   <div class="flex flex-col gap-[5px] mt-2">
     @for (task of tasks(); track $index) {
 
-    <app-task [task]="task"></app-task>
+    <app-task [task]="task" (isDeleting)="isDeletingTask($event)" (taskToDelete)="setTask($event)"></app-task>
     }
   </div>
 </div>

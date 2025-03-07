@@ -16,12 +16,14 @@ export class TasksService {
     this.loadFromLocalStorage();
   }
 
+  public isDeleting = signal<boolean>(false);
+
   addTask(task: Task) {
-    console.log(task);
+    // console.log(task)
     this._tasks.update((tasks) => [...tasks, { ...task }]);
     this.saveToLocalStorage();
     this.clearFilter();
-    console.log(this._tasks());
+    // console.log(this._tasks)
   }
 
   changeIsCompleted(id: number) {
@@ -48,7 +50,7 @@ export class TasksService {
   }
 
   searchTaskByText(text: string) {
-    console.log(this._state());
+    // console.log(this._state());
     const formatedText = text.toLowerCase().trim();
     const filteredTasks = this._tasks().filter((task) => {
       switch (this._state()) {
@@ -72,7 +74,7 @@ export class TasksService {
       tasks.map((t) => (t.id === task.id ? { ...t, text: text } : t))
     );
 
-    console.log(this._tasks());
+    // console.log(this._tasks());
 
     this.saveToLocalStorage();
   }
