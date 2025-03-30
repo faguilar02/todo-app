@@ -1,27 +1,44 @@
-# TodoAppFrontend
+# Taskiio
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.6.
+Taskiio es una aplicación de gestión de tareas sencilla y eficiente, diseñada para ayudarte a organizar tus pendientes de manera intuitiva.
 
-## Development server
+## 🚀 Demo
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Puedes probar la aplicación en el siguiente enlace:
+[Taskiio](https://taskiio.netlify.app)
 
-## Code scaffolding
+## 📌 Características
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- 📋 **Agregar tareas**: Crea nuevas tareas fácilmente.
+- ✅ **Marcar como completadas**: Administra el estado de cada tarea.
+- 🔍 **Búsqueda en tiempo real**: Filtra tareas por texto.
+- 📂 **Filtrado por estado**: Visualiza tareas completadas o pendientes.
+- 💾 **Persistencia de datos**: Guarda tareas en `localStorage` para mantenerlas al recargar la página.
 
-## Build
+## 🛠️ Tecnologías utilizadas
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- **Angular**: Framework de desarrollo frontend.
+- **TypeScript**: Lenguaje tipado para mejorar la calidad del código.
+- **Signal API**: Manejo eficiente del estado.
+- **LocalStorage**: Almacenamiento de tareas en el navegador.
 
-## Running unit tests
+## 📥 Instalación y ejecución
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Si deseas ejecutar el proyecto localmente, sigue estos pasos:
 
-## Running end-to-end tests
+```bash
+# Clonar el repositorio
+git clone https://github.com/tu-usuario/taskiio.git
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+# Ingresar al directorio del proyecto
+cd taskiio
 
-## Further help
+# Instalar dependencias
+npm install
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+# Ejecutar la aplicación
+ng serve
+```
+
+Luego, abre [http://localhost:4200](http://localhost:4200) en tu navegador.
+
